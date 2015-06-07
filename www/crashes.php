@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-define('HTACCESS_FILE', $_SERVER['DOCUMENT_ROOT']."/.htaccess");
-define('CONFIG_FILE', $_SERVER['DOCUMENT_ROOT']."/../config.php");
+define('HTACCESS_FILE', ".htaccess");
+define('CONFIG_FILE', "config.php");
 define('APP_PACKAGE_URI', isset($_GET['package']) ? "/".$_GET['package'] : "/");
 
 $start = microtime();
@@ -36,9 +36,6 @@ define('STATE_FIXED', 1);
 define('STATE_INVALID', 2);
 
 function bicou_log($msg) {
-	$file = fopen("../logs/err_", "a+");
-	fputs($file, date("d/M/Y G:i:s\t") . $msg . "\n");
-	fclose($file);
 }
 
 function display_crashes_vs_date_per_version($package) {
