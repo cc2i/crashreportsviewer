@@ -18,19 +18,26 @@ On the server
 Setup instructions:
 
 	$ cd ~
-	$ git clone https://github.com/BenoitDuffez/crashreportsviewer.git
-	$ cd crashreportsviewer
+	$ git clone https://github.com/cc2i/crashreportsviewer.git
+	$ cd crashreportsviewer/www  
 
-Edit `config.php` file as follows:
+Create file in /etc/apache2/conf-available (show apache.conf.available/crashreports.conf)  
+
+Create Database and User Database account  
+
+Create `config.php` file as follows:
 
 	<?php
-	$mysql_server = 'mysql.server.com'; // usually it's simply localhost
-	$mysql_user = 'username';
-	$mysql_password = 'password';
-	$mysql_db = 'db_name'; 
+		$mysql_server = 'mysql.server.com'; // usually it's simply localhost
+		$mysql_user = 'username';
+		$mysql_password = 'password';
+		$mysql_db = 'db_name';
+		$table_prefix = 'acra_';
+	?>
 
-Make Apache (or your webserver) point to `~/crashreportsviewer/www`.
-Open up your web browser to `http(s)://your.server.tld/path/to/www/`, which should indicate a message that the database is not installed. Simply click the link, and go back to `http(s)://your.server.tld/path/to/www/`.
+Edit .htaccess and define htpasswd path  
+
+Create htpasswd file  
 
 The database is now ready to receive crash reports. Configure your client (and make it crash!) to see if this is working for you.
 
@@ -39,6 +46,14 @@ On the client
 -------------
 
 ACRA should sent reports to `http://server.tld/path/to/submit.php`. Example annotation of your Android `Application` class:
+
+Add library to dependencies section in Gradle app file  
+dependencies {
+    
+    compile 'ch.acra:acra:4.5.0'
+    
+    
+Add to your application
 
 	@ReportsCrashes(formKey = "", // will not be used
 					formUri = "http://yourserver.com/path/to/submit.php",
@@ -93,4 +108,17 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
+    Copyright 2015 cc2i 
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
