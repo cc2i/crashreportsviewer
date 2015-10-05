@@ -1,6 +1,8 @@
-AuthUserFile /home/bicou/crashes.htpasswd
-AuthGroupFile /dev/null
-AuthName "Oh hai."
+# Modify filepath here
+# create file with command : htpasswd -c path_to_define/crashes.htpasswd USERNAME
+AuthUserFile path_to_define/crashes.htpasswd
+#AuthGroupFile /dev/null
+AuthName "Zone de reporting"
 AuthType Basic
 
 <Limit GET POST>
